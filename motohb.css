@@ -1,0 +1,436 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 2500px;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.card-scene {
+  position: relative;
+  width: 440px;
+  height: 580px;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-scene.open {
+  transform: translateX(50%);
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+/* ОСНОВА (Права сторінка з текстом) */
+.card-base {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #161618;
+  border-radius: 0 20px 20px 0;
+  border: 1px solid rgba(255, 69, 0, 0.2);
+  border-left: none;
+  box-shadow: 20px 25px 45px rgba(0, 0, 0, 0.8);
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+/* СТОРІНКИ */
+.text-page, 
+.photo-page {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.text-page.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: fadeIn 0.4s ease;
+}
+
+.photo-page.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* РУХОМА ОБКЛАДИНКА */
+.card-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  cursor: pointer;
+}
+
+.card-scene.open .card-cover {
+  transform: rotateY(-180deg);
+}
+
+.cover-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #1b1b1e, #121214);
+  border-radius: 0 20px 20px 0;
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  padding: 44px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backface-visibility: hidden;
+  box-shadow: 12px 18px 35px rgba(0, 0, 0, 0.7);
+}
+
+.cover-subtitle {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(255, 69, 0, 0.15);
+  border: 1px solid #ff4500;
+  color: #ff4500;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+  text-transform: uppercase;
+}
+
+.cover-title {
+  font-size: 2.3rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-top: 12px;
+}
+
+.highlight-name {
+  color: #ff4500;
+  text-shadow: 0 0 12px rgba(255, 69, 0, 0.5);
+}
+
+.finish-flag {
+  -webkit-text-fill-color: initial;
+  filter: grayscale(100%);
+  display: inline-block;
+}
+
+.click-hint {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.click-hint::after {
+  content: '→';
+  font-size: 1.1rem;
+  color: #ff4500;
+  transition: transform 0.3s ease;
+}
+
+.card-cover:hover .click-hint::after {
+  transform: translateX(6px);
+}
+
+/* ФОТО (Зворот обкладинки — Ліва сторінка розвороту) */
+.cover-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #121214;
+  border-radius: 20px 0 0 20px;
+  border: 1px solid rgba(255, 69, 0, 0.2);
+  border-right: none;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  padding: 24px;
+  box-shadow: -20px 25px 45px rgba(0, 0, 0, 0.8);
+}
+
+.photo-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: #1a1a1e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.moto-sticker {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  padding: 6px 12px;
+  background: #25252a;
+  color: #ff4500;
+  border: 1px solid rgba(255, 69, 0, 0.5);
+  font-weight: 700;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+/* ТЕКСТ */
+.greeting-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ff4500;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.greeting-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cccccc;
+  font-weight: 400;
+  user-select: text;
+}
+
+.greeting-text p {
+  margin-bottom: 14px;
+}
+
+.quote-box {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 69, 0, 0.08);
+  border-left: 4px solid #ff4500;
+  border-radius: 0 10px 10px 0;
+}
+
+.quote-text {
+  font-style: italic;
+  color: #f1f2f6;
+  font-size: 0.9rem;
+  margin-bottom: 0 !important;
+}
+
+.signature {
+  margin-top: 18px;
+  font-size: 0.95rem;
+  color: #a1a1aa;
+  font-style: italic;
+}
+
+.signature a {
+  color: #ff4500;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.signature a:hover {
+  color: #ff5714;
+  text-decoration: underline;
+}
+
+/* НАВІГАЦІЯ ТА КНОПКА ЗАКРИТТЯ */
+.pagination {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-btn {
+  background: #222226;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ff4500;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.25s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #ff4500;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(255, 69, 0, 0.4);
+}
+
+.nav-btn:disabled {
+  color: #52525b;
+  background: transparent;
+  border-color: transparent;
+  cursor: not-allowed;
+}
+
+.page-indicator {
+  font-size: 0.8rem;
+  color: #71717a;
+  font-weight: 600;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a1a1aa;
+  font-size: 0.8rem;
+  padding: 6px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: center;
+}
+
+.close-btn:hover {
+  background: rgba(255, 69, 0, 0.15);
+  color: #ff4500;
+  border-color: rgba(255, 69, 0, 0.3);
+}
+
+/* ЕФЕКТИ */
+.kiss-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  animation: floatUp 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4) rotate(0deg);
+  }
+  15% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.4) rotate(var(--rot));
+  }
+}
+
+/* ==========================================
+   АДАПТИВНІСТЬ ПІД ТЕЛЕФОНИ
+   ========================================== */
+@media (max-width: 920px) {
+  .card-scene {
+    width: 340px;
+    height: 480px;
+  }
+  .card-scene.open {
+    transform: translateX(35%);
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 5px;
+  }
+
+  .card-scene {
+    width: 290px;
+    height: 440px;
+  }
+
+  /* На телефонах робимо плавний зсув вліво при відкритті, 
+     щоб обидві сторінки (ліва з фото і права з текстом) вмістилися на екрані */
+  .card-scene.open {
+    transform: translateX(48%) !important;
+  }
+
+  .card-base,
+  .cover-front {
+    padding: 20px 14px;
+    border-radius: 0 14px 14px 0;
+  }
+
+  .cover-back {
+    padding: 10px;
+    border-radius: 14px 0 0 14px;
+  }
+
+  .cover-title {
+    font-size: 1.4rem;
+  }
+
+  .greeting-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .greeting-text {
+    font-size: 0.78rem;
+    line-height: 1.35;
+  }
+
+  .greeting-text p {
+    margin-bottom: 6px;
+  }
+  
+  .quote-box {
+    padding: 8px 10px;
+    margin-top: 8px;
+  }
+  
+  .quote-text {
+    font-size: 0.75rem !important;
+  }
+  
+  .signature {
+    margin-top: 10px;
+    font-size: 0.8rem;
+  }
+}

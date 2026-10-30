@@ -1,0 +1,275 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?q=80&w=1200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(8px) brightness(0.4) contrast(1.2);
+    transform: scale(1.1);
+    z-index: -1;
+}
+
+.main-card {
+    display: flex;
+    width: 850px;
+    height: 520px;
+    background: rgba(10, 10, 15, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 40px;
+    border: 1px solid rgba(255, 118, 0, 0.4);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    padding: 25px;
+    
+    opacity: 0;
+    transform: translateY(15px) scale(0.98);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.main-card.page-loaded {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.main-card.page-exit {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.98);
+}
+
+.form-side {
+    flex: 1.2;
+    height: 100%;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(18, 12, 22, 0.85);
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    border: 1px solid rgba(255, 118, 0, 0.25);
+    border-right: none;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.image-side {
+    flex: 1;
+    height: 100%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-container {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    overflow: hidden;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.8) saturate(1.2);
+}
+
+.welcome-side h2 {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 118, 0, 0.7);
+}
+
+.welcome-text {
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #f1f2f6;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+}
+
+.welcome-text:has(strong) {
+    background: rgba(30, 15, 35, 0.85);
+    width: 100%;
+    max-width: 300px;
+    padding: 14px 20px;
+    border-radius: 16px;
+    border-left: 4px solid #ff7600;
+    margin: 12px auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.welcome-text strong {
+    color: #ffb142;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.date-subtext {
+    display: block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+    margin-top: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Інтерактивний гарбуз */
+.heart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 15px;
+    padding: 5px;
+    user-select: none;
+}
+
+.pumpkin-icon {
+    font-size: 44px;
+    animation: pumpkinPulse 1.8s infinite;
+    filter: drop-shadow(0 0 15px rgba(255, 118, 0, 0.9));
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* ВЕЛИКИЙ РОЗСІЯНИЙ ТЕКСТ БЕЗ ФОНУ ЗВЕРХУ ТИКВИ */
+.halloween-popup {
+    position: absolute;
+    bottom: 60px;
+    font-size: 18px; /* Збільшений текст */
+    font-weight: 800;
+    color: #ff9f43;
+    text-shadow: 0 0 12px rgba(255, 118, 0, 0.9), 0 0 25px rgba(255, 69, 0, 0.7); /* Атмосферне неонове свічення */
+    
+    opacity: 0;
+    transform: translateY(15px) scale(0.8);
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    white-space: nowrap;
+}
+
+/* Активний стан гарбуза */
+.heart-container.active .pumpkin-icon {
+    transform: scale(1.2);
+}
+
+.heart-container.active .halloween-popup {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+@keyframes pumpkinPulse {
+    0% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 10px rgba(255, 118, 0, 0.6));
+    }
+    50% { 
+        transform: scale(1.15); 
+        filter: drop-shadow(0 0 25px rgba(255, 140, 0, 1));
+    }
+    100% { 
+        transform: scale(1); 
+        filter: drop-shadow(0 0 10px rgba(255, 118, 0, 0.6));
+    }
+}
+
+/* Рухомі літаючі привиди та гарбузики ( JS Particles ) */
+.spooky-spirit {
+    position: fixed;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 9999;
+    animation: flyAway 1.2s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes flyAway {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(1.4) rotate(360deg);
+    }
+}
+
+/* Кнопка */
+.welcome-btn {
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 15px;
+    width: 100%;
+    max-width: 300px;
+    padding: 14px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, #ff7600, #b33939);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 118, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.welcome-btn:hover {
+    background: linear-gradient(135deg, #ff9f43, #e74c3c);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 118, 0, 0.7);
+}
+
+.welcome-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 800px) {
+    .main-card {
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin-top: 20px;
+        padding: 15px;
+    }
+    .form-side {
+        border-radius: 20px;
+    }
+    .image-side {
+        display: none;
+    }
+}

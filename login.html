@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Welcome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+    <div class="main-card" id="mainCard">
+        <div class="form-side welcome-side">
+            <!-- Інтерактивний гарбуз, який спавнить привидів і гарбузики -->
+            <div class="heart-container pumpkin-wrapper" id="pumpkinTrigger">
+                <span class="love-popup-text halloween-popup">Ууу... Цукерки або смерть! 🎃👻</span>
+                <div class="heart-icon pumpkin-icon">
+                    🎃
+                </div>
+            </div>
+            
+            <h2>Отакої, шановний! ✨</h2>
+            
+            <p class="welcome-text">
+                Для тебе вже було створено особистий акаунт
+            </p>
+            <p class="welcome-text">
+                <strong>Відносно недавно</strong> 🦇
+                <span class="date-subtext">29.10.2026</span>
+            </p>
+
+            <a href="signup.html" class="signup-btn welcome-btn smooth-link">Перейти до входу</a>
+        </div>
+
+        <div class="image-side">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?q=80&w=600&auto=format&fit=crop" alt="Halloween Night">
+            </div>
+        </div>
+    </div>
+
+    <!-- Контейнер для містичних елементів, що рухаються -->
+    <div id="halloweenParticles"></div>
+
+    <script>
+    const mainCard = document.getElementById('mainCard');
+    const pumpkinTrigger = document.getElementById('pumpkinTrigger');
+    const particlesContainer = document.getElementById('halloweenParticles');
+
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            mainCard.classList.add('page-loaded');
+        }, 50);
+    });
+
+    // Плавний вихід
+    document.querySelectorAll('.smooth-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            mainCard.classList.remove('page-loaded');
+            mainCard.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 400);
+        });
+    });
+
+    // Анімація спавну привидів та гарбузиків через JS при кліку
+    pumpkinTrigger.addEventListener('click', () => {
+        pumpkinTrigger.classList.toggle('active');
+
+        // Спавнимо летючих хелловінських духів
+        for (let i = 0; i < 12; i++) {
+            createSpookyParticle();
+        }
+    });
+
+    function createSpookyParticle() {
+        const particle = document.createElement('div');
+        particle.classList.add('spooky-spirit');
+        
+        // Випадковий вибір між гарбузом, привидом або кажаном
+        const symbols = ['🎃', '👻', '🦇', '✨', '🍬'];
+        particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+
+        // Початкова позиція біля гарбуза
+        const rect = pumpkinTrigger.getBoundingClientRect();
+        particle.style.left = (rect.left + rect.width / 2 + (Math.random() * 40 - 20)) + 'px';
+        particle.style.top = (rect.top + rect.height / 2) + 'px';
+
+        // Випадковий напрямок розльоту
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 80 + Math.random() * 180;
+        const tx = Math.cos(angle) * distance;
+        const ty = Math.sin(angle) * distance - 50; // Летять переважно вгору
+
+        particle.style.setProperty('--tx', tx + 'px');
+        particle.style.setProperty('--ty', ty + 'px');
+
+        particlesContainer.appendChild(particle);
+
+        // Видаляємо елемент після завершення анімації
+        setTimeout(() => {
+            particle.remove();
+        }, 1200);
+    }
+    </script>
+
+</body>
+</html>

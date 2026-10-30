@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>З 17-річчям, Максе! 🏍️💨</title>
+  <link rel="stylesheet" href="motohb.css">
+</head>
+<body>
+
+  <div class="card-scene" id="cardScene">
+    <div class="card" id="birthdayCard">
+      
+      <!-- РУХОМА ОБКЛАДИНКА -->
+      <div class="card-cover" id="cardCover">
+        
+        <!-- ЛИЦЕВА ОБКЛАДИНКА -->
+        <div class="cover-front">
+          <div>
+            <div class="cover-subtitle">RIDER CLUB • 17 YEARS</div>
+            <h1 class="cover-title">З Днем<br>Народження,<br><span class="highlight-name">Максе!</span> <span class="finish-flag">🏁</span></h1>
+          </div>
+          <div class="click-hint">Торкніться, щоб завести мотор</div>
+        </div>
+
+        <!-- ЗВОРОТ ОБКЛАДИНКИ (Ліва сторона — Фото) -->
+        <div class="cover-back">
+          <div class="photo-page active" id="photoPage1">
+            <div class="photo-container">
+              <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80" alt="Max Moto 1">
+              <div class="moto-sticker">SPEED & FREEDOM</div>
+            </div>
+          </div>
+
+          <div class="photo-page" id="photoPage2">
+            <div class="photo-container">
+              <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?auto=format&fit=crop&w=800&q=80" alt="Max Moto 2">
+              <div class="moto-sticker">FULL THROTTLE ✊</div>
+            </div>
+          </div>
+
+          <div class="photo-page" id="photoPage3">
+            <div class="photo-container">
+              <img src="https://images.unsplash.com/photo-1558980664-3a031cf67ea8?auto=format&fit=crop&w=800&q=80" alt="Max Moto 3">
+              <div class="moto-sticker">BORN TO RIDE 🏁</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ОСНОВА (Права сторона з текстом) -->
+      <div class="card-base">
+        
+        <div class="text-page active" id="textPage1">
+          <h2 class="greeting-title">Дорогий бро Макс! 🏍️🔥</h2>
+          <div class="greeting-text">
+            <p>Вітаю тебе з 17-річчям!</p>
+            <p>17 років — це найкращий час для нових маршрутів, реву мотора та повного газу до своїх мрій!</p>
+            <div class="quote-box">
+              <p class="quote-text">«Чотири колеса везуть тіло, а два — душу!»</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-page" id="textPage2">
+          <h2 class="greeting-title">Рівних доріг та драйву! 🏁</h2>
+          <div class="greeting-text">
+            <p>Бажаю міцного зачепу на кожному повороті, заповненого бака, відсутності заторів та «листів щастя»!</p>
+            <p>Нехай байк ніколи не підводить, а кожен виїзд дарує незабутній адреналін та справжню свободу.</p>
+          </div>
+        </div>
+
+        <div class="text-page" id="textPage3">
+          <h2 class="greeting-title">Тільки вперед! ⚡</h2>
+          <div class="greeting-text">
+            <p>Залишайся таким же надійним другом, впевненим у собі та зарядженим на максимум!</p>
+            <div class="signature">— З повагою та найкращими <a href="gift.html">побажаннями 🤝🔥</a></div>
+          </div>
+        </div>
+
+        <!-- Навігація з кнопкою закриття -->
+        <div class="pagination" id="paginationControls" style="display: none;">
+          <div class="nav-controls">
+            <button class="nav-btn" id="prevBtn" disabled>← Назад</button>
+            <span class="page-indicator" id="pageIndicator">1 / 3</span>
+            <button class="nav-btn" id="nextBtn">Далі →</button>
+          </div>
+          <button class="close-btn" id="closeBtn">Закрити ✖</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="motohb.js"></script>
+</body>
+</html>

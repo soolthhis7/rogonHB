@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Персональний Сайт Максима</title>
+  <link rel="stylesheet" href="motovideo1.css">
+  <style>
+    /* Стилі для хеллоуїнського гарбузика внизу */
+    .halloween-footer-surprise {
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .pumpkin-btn {
+      background: none;
+      border: none;
+      font-size: 55px;
+      cursor: pointer;
+      user-select: none;
+      filter: drop-shadow(0 0 15px rgba(255, 107, 0, 0.4));
+      transition: transform 0.3s ease;
+      animation: pumpkinBounce 2s infinite ease-in-out;
+    }
+
+    .pumpkin-btn:hover {
+      transform: scale(1.15) rotate(10deg);
+    }
+
+    .halloween-text {
+      margin-top: 10px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ff9f43;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.4s ease;
+      pointer-events: none;
+      text-shadow: 0 0 10px rgba(255, 159, 67, 0.5);
+    }
+
+    .halloween-text.show {
+      opacity: 1;
+      transform: translateY(0);
+      animation: blinkText 1.5s infinite alternate;
+    }
+
+    @keyframes pumpkinBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes blinkText {
+      0% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://media.discordapp.net/attachments/1549376815435485315/1564347471386255480/1793039879581.png?ex=6ae0ef9d&is=6adf9e1d&hm=eb4bd7035dc1f61959346d1a4d929e86c7ed0ff08bd1d794625738260a02d104&=&format=webp&quality=lossless&width=1280&height=354" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="moto.html">Головна</a></li>
+        <li><a href="#hero">Огляд</a></li>
+        <li><a href="#biography">Про райдера</a></li>
+        <li><a href="motovideo.html">Мото відео</a></li>
+        <li><a href="motophoto.html">Галерея фото</a></li>
+        <li><a href="#gallery">Творчі едіти</a></li>
+        <li><a href="#details">Деталі</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Головна секція на весь екран (Hero) -->
+  <header class="hero" id="hero">
+    <h1>Ласкаво просимо, Максиме!</h1>
+    <p>«Офіційний мотопростір 17-річного райдера з атмосферною <em>відеогалереєю</em>, адреналіном, швидкістю та крутими моментами. <br> 
+      Гортайте <em>нижче</em>, щоб відчути цей вайб.»</p>
+    <a href="#gallery" class="btn">Дивитися мото відео</a>
+  </header>
+
+  <!-- 2. Біографія / Про райдера -->
+  <section class="content-section" id="biography">
+    <h2 class="section-title">Про головного райдера</h2>
+    <div class="info-card hero-about-card">
+      <p class="about-lead">Тут показано відеопокатушки <span class="highlight-name">Максима Ковалюка</span>, його <span class="highlight-name">драйв 2026 року</span>, швидкість та адреналін на двоколісному коні.</p>
+      
+      <div class="quote-box">
+        <p class="quote-text">«Кожна покатушка — це окрема історія боротьби зі швидкістю, де замість зайвих слів говорить гучний вихлоп, нічне місто та повна свобода руху на двох колесах.»</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Відеогалерея (Одне вікно, мобільний вертикальний формат) -->
+  <section class="content-section" id="gallery">
+    <h2 class="section-title">Творчі мотовідео</h2>
+
+    <div class="video-slider-container">
+      <!-- Стрілочки переключення -->
+      <button class="nav-btn prev-btn" id="prevBtn" aria-label="Попереднє відео">&#10094;</button>
+      <button class="nav-btn next-btn" id="nextBtn" aria-label="Наступне відео">&#10095;</button>
+
+      <div class="video-player-wrapper">
+        <video id="videoPlayer" controls allowfullscreen>
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Опис та лічильник -->
+      <div class="video-info">
+        <h3 id="videoTitle">Завантаження...</h3>
+        <div class="video-counter" id="videoCounter">Відео 1 з 4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Детальна інформація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">Технічні деталі</h2>
+    <div class="info-card">
+      <p>У цьому розділі вказані специфікації мотоциклів, плани на майбутні прохвати, тюнінг та контакти для зв'язку.</p>
+    </div>
+  </section>
+
+  <!-- Хеллоуїнський сюрприз у самом низу сайту -->
+  <div class="halloween-footer-surprise">
+    <button class="pumpkin-btn" id="pumpkinBtn" title="Натисни мене!">🎃</button>
+    <div class="halloween-text" id="halloweenText">ого а, що це таке? Нужмо, нажми!</div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2026 Moto Hub. Створено спеціально для Максима 🏍️</p>
+  </footer>
+
+  <script>
+    console.log("Двигун успішно запущено! Скрипт працює!");
+    alert("Ласкаво просимо в мото-зону Максима! 🏍️⚡");
+
+    function scrollDown() {
+      window.scrollTo({top: window.innerHeight, behavior: 'smooth' });
+    }
+
+    // Логіка кліків по гарбузику внизу
+    const pumpkinBtn = document.getElementById('pumpkinBtn');
+    const halloweenText = document.getElementById('halloweenText');
+    let clickCount = 0;
+
+    if (pumpkinBtn && halloweenText) {
+      pumpkinBtn.addEventListener('click', () => {
+        clickCount++;
+
+        if (clickCount === 1) {
+          // Перший клік: показуємо текст
+          halloweenText.classList.add('show');
+        } else {
+          // Другий та наступні кліки: перекидаємо на іншу сторінку
+          window.location.href = 'motohb.html'; 
+        }
+      });
+    }
+  </script>
+  <script src="motovideo1.js" defer></script>
+  <script src="moto.js" defer></script>
+</body>
+</html>

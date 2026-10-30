@@ -1,0 +1,450 @@
+/* ==========================================
+   1. БАЗОВІ СТИЛІ ТА СКИДАННЯ (RESET)
+   ========================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+  background-color: #0d0d0d;
+  color: #ffffff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ==========================================
+   2. НАПІВПРОЗОРЕ МЕНЮ (GLASSMORPHIC NAVBAR)
+   ========================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(13, 13, 13, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+  z-index: 1000;
+  padding: 12px 0;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease;
+}
+
+/* Затемнення шапки при відкритому мобільному меню */
+.navbar:has(.nav-links.active) {
+  background: rgba(13, 13, 13, 0.95);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.nav-logo img {
+  height: 45px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* Кнопка гамбургер (прихована на ПК) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 22px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Анімація гамбургера в хрестик */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(9.5px) rotate(45deg);
+  background-color: #ff4500;
+}
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(-9.5px) rotate(-45deg);
+  background-color: #ff4500;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 22px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: #d1d1d1;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #ff4500;
+  text-shadow: 0 0 8px rgba(255, 69, 0, 0.6);
+}
+
+/* ==========================================
+   3. ГОЛОВНА СЕКЦІЯ (HERO)
+   ========================================== */
+.hero {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(rgba(10, 10, 10, 0.75), rgba(13, 13, 13, 0.9)), 
+              url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(180deg, #ffffff 30%, #aaaaaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 900px !important;
+  width: 90% !important;
+  margin: 0 auto 32px auto !important;
+  color: #b0b0b0;
+  text-align: center;
+  white-space: normal;
+}
+
+.hero p em {
+  color: #ff4500;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.hero .btn {
+  display: inline-block;
+  padding: 14px 36px;
+  background: linear-gradient(135deg, #ff4500, #d03000);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 20px rgba(255, 69, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.hero .btn:hover {
+  background: linear-gradient(135deg, #ff5714, #e03800);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(255, 69, 0, 0.6);
+}
+
+/* ==========================================
+   4. КОНТЕНТНІ СЕКЦІЇ ТА ЗАГОЛОВКИ
+   ========================================== */
+.content-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 100px 20px 60px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 40px;
+  position: relative;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 70px;
+  height: 4px;
+  background: #ff4500;
+  margin: 12px auto 0;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+/* ==========================================
+   5. ІНФОРМАЦІЙНІ КАРТКИ ТА БІОГРАФІЯ
+   ========================================== */
+.info-card {
+  background: #161618;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  position: relative;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  border-color: rgba(255, 69, 0, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.info-card p {
+  color: #cccccc;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.hero-about-card {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, #161618, #101012);
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  padding: 35px;
+  border-radius: 18px;
+}
+
+.about-lead {
+  font-size: 1.1rem;
+  color: #cccccc;
+  margin-bottom: 20px;
+  line-height: 1.7;
+}
+
+.highlight-name {
+  color: #ff4500;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 69, 0, 0.4);
+}
+
+.quote-box {
+  position: relative;
+  margin-top: 20px;
+  padding: 18px 22px;
+  background: rgba(255, 69, 0, 0.08);
+  border-left: 4px solid #ff4500;
+  border-radius: 0 12px 12px 0;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.quote-text {
+  font-style: italic;
+  color: #e0e0e0;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   6. КОНТЕЙНЕР ДЛЯ ВЕРТИКАЛЬНОГО ВІДЕО
+   ========================================== */
+.video-slider-container {
+  position: relative;
+  max-width: 380px;
+  margin: 0 auto;
+  background: #161618;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 69, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 177.78%;
+  height: 0;
+  background-color: #000000;
+  overflow: hidden;
+}
+
+.video-player-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  border: none;
+  outline: none;
+}
+
+.video-info {
+  padding: 20px;
+  text-align: center;
+  background: #161618;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.video-info h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.video-counter {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(255, 69, 0, 0.12);
+  border: 1px solid rgba(255, 69, 0, 0.4);
+  color: #ff4500;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.nav-btn {
+  position: absolute;
+  top: 45%;
+  transform: translateY(-50%);
+  background: rgba(22, 22, 24, 0.75);
+  color: #ffffff;
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 10;
+}
+
+.prev-btn { 
+  left: 12px; 
+}
+
+.next-btn { 
+  right: 12px; 
+}
+
+.nav-btn:hover {
+  background: #ff4500;
+  color: #ffffff;
+  border-color: #ff4500;
+  box-shadow: 0 0 15px rgba(255, 69, 0, 0.6);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* ==========================================
+   7. ФУТЕР (FOOTER)
+   ========================================== */
+.footer {
+  background-color: #080808;
+  color: #777777;
+  text-align: center;
+  padding: 25px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+/* ==========================================
+   8. АДАПТИВНІСТЬ ТА МОБІЛЬНЕ МЕНЮ (ГАМБУРГЕР)
+   ========================================== */
+@media (max-width: 768px) {
+  /* Увімкнення кнопки гамбургера */
+  .menu-toggle {
+    display: flex;
+  }
+
+  /* Випадаюче меню для мобільних екранів */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 13, 13, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 0;
+    gap: 18px;
+    border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+    transform: translateY(-150%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Стан відкритого меню */
+  .nav-links.active {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .hero h1 { 
+    font-size: 2.2rem; 
+  }
+  .hero p {
+    font-size: 1rem;
+  }
+  .content-section {
+    padding: 70px 15px 30px;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+  .video-slider-container { 
+    max-width: 100%; 
+  }
+  .nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+}

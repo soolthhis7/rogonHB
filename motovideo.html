@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SLTh7 - Персональний Сайт Максима</title>
+  <link rel="stylesheet" href="motovideo.css">
+</head>
+<body>
+
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://media.discordapp.net/attachments/1549376815435485315/1564347471386255480/1793039879581.png?ex=6ae0ef9d&is=6adf9e1d&hm=eb4bd7035dc1f61959346d1a4d929e86c7ed0ff08bd1d794625738260a02d104&=&format=webp&quality=lossless&width=1280&height=354" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="moto.html">Головна</a></li>
+        <li><a href="#hero">Огляд</a></li>
+        <li><a href="#biography">Про райдера</a></li>
+        <li><a href="#gallery">Мото відео</a></li>
+        <li><a href="motophoto.html">Галерея фото</a></li>
+        <li><a href="motovideo1.html">Творчі едіти</a></li>
+        <li><a href="#details">Деталі</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Головна секція на весь екран (Hero) -->
+  <header class="hero" id="hero">
+    <h1>Ласкаво просимо, Максиме!</h1>
+    <p>«Офіційний мотопростір 17-річного райдера з атмосферною <em>відеогалереєю</em>, адреналіном, швидкістю та крутими моментами. <br> 
+      Гортайте <em>нижче</em>, щоб відчути цей вайб.»</p>
+    <a href="#gallery" class="btn">Дивитися мото відео</a>
+  </header>
+
+  <!-- 2. Біографія / Про райдера -->
+  <section class="content-section" id="biography">
+    <h2 class="section-title">Про головного райдера</h2>
+    <div class="info-card hero-about-card">
+      <p class="about-lead">Тут показано відеопокатушки <span class="highlight-name">Максима Ковалюка</span>, його <span class="highlight-name">драйв 2026 року</span>, швидкість та адреналін на двоколісному коні.</p>
+      
+      <div class="quote-box">
+        <p class="quote-text">«Кожна покатушка — це окрема історія боротьби зі швидкістю, де замість зайвих слів говорить гучний вихлоп, нічне місто та повна свобода руху на двох колесах.»</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Відеогалерея (Одне вікно, мобільний вертикальний формат) -->
+  <section class="content-section" id="gallery">
+    <h2 class="section-title">Мото відеогалерея</h2>
+
+    <div class="video-slider-container">
+      <!-- Стрілочки переключення -->
+      <button class="nav-btn prev-btn" id="prevBtn" aria-label="Попереднє відео">&#10094;</button>
+      <button class="nav-btn next-btn" id="nextBtn" aria-label="Наступне відео">&#10095;</button>
+
+      <div class="video-player-wrapper">
+        <video id="videoPlayer" controls allowfullscreen>
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- Опис та лічильник -->
+      <div class="video-info">
+        <h3 id="videoTitle">Завантаження...</h3>
+        <div class="video-counter" id="videoCounter">Відео 1 з 4</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Детальна інформація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">Технічні деталі</h2>
+    <div class="info-card">
+      <p>У цьому розділі вказані специфікації мотоциклів, плани на майбутні прохвати, тюнінг та контакти для зв'язку.</p>
+    </div>
+  </section>
+
+  <!-- Футер -->
+  <footer class="footer">
+    <p>&copy; 2026 SLTh7. Створено для Максима Ковалюка.</p>
+  </footer>
+
+  <script src="motovideo.js" defer></script>
+  <script src="moto.js" defer></script>
+</body>
+</html>

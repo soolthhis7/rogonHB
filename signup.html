@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halloween Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+
+    <div class="main-card" id="mainCard">
+        <div class="form-side">
+            <h1>Sign Up 🎃</h1>
+
+            <div class="input-field" id="usernameField">
+                <label>User name</label>
+                <input type="text" id="username">
+                <i class="fas fa-user"></i>
+            </div>
+
+            <div class="input-field" id="emailField">
+                <label>Email</label>
+                <input type="email" id="email">
+                <i class="fas fa-envelope"></i>
+            </div>
+
+            <div class="input-field" id="passwordField">
+                <label>Password</label>
+                <input type="password" id="password">
+                <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+            </div>
+            
+            <small class="error-text" id="passwordError">Мінімум 8 символів</small>
+
+            <button class="signup-btn" id="signupBtn">Sign Up</button>
+            
+            <p class="footer-text">
+                Already Have Account? <a href="login.html" class="smooth-link" style="text-decoration: none; color: inherit; font-weight: bold;">Login</a>
+            </p>
+        </div>
+
+        <div class="image-side">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1508385082359-f38ae991e8f2?q=80&w=600&auto=format&fit=crop" alt="Halloween Pumpkins">
+            </div>
+        </div>
+    </div>
+    
+    <!-- Кнопка та Вискакуюче Поле Адміна -->
+    <div class="admin-wrapper">
+        <button id="adminBtn" class="admin-btn"><i class="fas fa-user-shield"></i> Admin</button>
+        <div id="adminModal" class="admin-popup">
+            <div class="admin-popup-header">
+                <span><i class="fas fa-key"></i> Admin Code</span>
+                <button id="closeAdminModal" class="close-admin-btn">&times;</button>
+            </div>
+            <div class="admin-input-group">
+                <input type="password" id="adminCodeInput" placeholder="Введіть код">
+                <button id="submitAdminCode" class="admin-submit-btn"><i class="fas fa-arrow-right"></i></button>
+            </div>
+            <small id="adminError" class="admin-error-text">Невірний код!</small>
+        </div>
+    </div>
+
+    <script>
+    const mainCard = document.getElementById('mainCard');
+
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(() => {
+            mainCard.classList.add('page-loaded');
+        }, 50);
+    });
+
+    document.querySelectorAll('.smooth-link').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetUrl = this.getAttribute('href');
+            mainCard.classList.remove('page-loaded');
+            mainCard.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 400);
+        });
+    });
+
+    const username = document.getElementById('username');
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    const signupBtn = document.getElementById('signupBtn');
+    const passwordError = document.getElementById('passwordError');
+    const togglePassword = document.getElementById('togglePassword');
+
+    const usernameField = document.getElementById('usernameField');
+    const emailField = document.getElementById('emailField');
+    const passwordField = document.getElementById('passwordField');
+
+    const SECRET_USERNAME = "rogon_00"; 
+    const SECRET_EMAIL = "rogon2009@gmail.com";    
+    const SECRET_PASSWORD = "31102009"; 
+
+    function clearErrors() {
+        usernameField.classList.remove('error-input');
+        emailField.classList.remove('error-input');
+        passwordField.classList.remove('error-input');
+        passwordError.classList.remove('show');
+    }
+
+    username.addEventListener('input', clearErrors);
+    email.addEventListener('input', clearErrors);
+    password.addEventListener('input', clearErrors);
+
+    togglePassword.addEventListener('click', function() {
+        const isPassword = password.getAttribute('type') === 'password';
+        password.setAttribute('type', isPassword ? 'text' : 'password');
+        this.classList.toggle('fa-eye');
+        this.classList.toggle('fa-eye-slash');
+    });
+
+    signupBtn.addEventListener('click', function() {
+        const userValue = username.value.trim();
+        const emailValue = email.value.trim();
+        const passValue = password.value;
+
+        clearErrors();
+
+        if (userValue === '' || emailValue === '' || passValue.trim() === '') {
+            passwordError.textContent = "Будь ласка, заповніть усі поля!";
+            passwordError.classList.add('show');
+            if (userValue === '') usernameField.classList.add('error-input');
+            if (emailValue === '') emailField.classList.add('error-input');
+            if (passValue.trim() === '') passwordField.classList.add('error-input');
+            return;
+        }
+
+        if (userValue !== SECRET_USERNAME) {
+            passwordError.textContent = "Неправильний юзернейм!";
+            passwordError.classList.add('show');
+            usernameField.classList.add('error-input');
+            return;
+        }
+
+        if (emailValue !== SECRET_EMAIL) {
+            passwordError.textContent = "Неправильний Gmail!";
+            passwordError.classList.add('show');
+            emailField.classList.add('error-input');
+            return;
+        }
+
+        if (passValue.length < 8) {
+            passwordError.textContent = "Мінімум 8 символів";
+            passwordError.classList.add('show');
+            passwordField.classList.add('error-input');
+            return;
+        }
+
+        if (passValue !== SECRET_PASSWORD) {
+            passwordError.textContent = "Неправильний пароль!";
+            passwordError.classList.add('show');
+            passwordField.classList.add('error-input');
+            return;
+        }
+
+        mainCard.classList.remove('page-loaded');
+        mainCard.classList.add('page-exit');
+        setTimeout(() => {
+            window.location.href = 'moto.html';
+        }, 400);
+    });
+
+    const adminBtn = document.getElementById('adminBtn');
+    const adminModal = document.getElementById('adminModal');
+    const closeAdminModal = document.getElementById('closeAdminModal');
+    const submitAdminCode = document.getElementById('submitAdminCode');
+    const adminCodeInput = document.getElementById('adminCodeInput');
+    const adminError = document.getElementById('adminError');
+
+    const SECRET_ADMIN_CODE = "31102009";
+
+    adminBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        adminModal.classList.toggle('show');
+        if (adminModal.classList.contains('show')) {
+            adminCodeInput.focus();
+        }
+    });
+
+    closeAdminModal.addEventListener('click', () => {
+        adminModal.classList.remove('show');
+        adminError.classList.remove('show');
+        adminCodeInput.value = '';
+    });
+
+    function verifyAdminCode() {
+        if (adminCodeInput.value === SECRET_ADMIN_CODE) {
+            adminError.classList.remove('show');
+            mainCard.classList.remove('page-loaded');
+            mainCard.classList.add('page-exit');
+            setTimeout(() => {
+                window.location.href = 'moto.html';
+            }, 400);
+        } else {
+            adminError.classList.add('show');
+        }
+    }
+
+    submitAdminCode.addEventListener('click', verifyAdminCode);
+
+    adminCodeInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            verifyAdminCode();
+        }
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!adminModal.contains(e.target) && !adminBtn.contains(e.target)) {
+            adminModal.classList.remove('show');
+            adminError.classList.remove('show');
+            adminCodeInput.value = '';
+        }
+    });
+</script>
+
+</body>
+</html>
