@@ -1,1 +1,112 @@
 
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MOTO RIDER - Максим Ковалюк</title>
+  <link rel="stylesheet" href="moto.css">
+</head>
+<body>
+    
+  <!-- Напівпрозоре меню зверху -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="https://media.discordapp.net/attachments/1549376815435485315/1564347471386255480/1793039879581.png?ex=6ae0ef9d&is=6adf9e1d&hm=eb4bd7035dc1f61959346d1a4d929e86c7ed0ff08bd1d794625738260a02d104&=&format=webp&quality=lossless&width=1280&height=354" alt="SLTh7 Logo">
+      </a>
+
+      <!-- Кнопка мобільного меню (гамбургер) -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Відкрити меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#hero">Головна</a></li>
+        <li><a href="#about">Про Максима</a></li>
+        <li><a href="#garage">Гараж & Траса</a></li>
+        <li><a href="motovideo.html">Відео проїзди</a></li>
+        <li><a href="motophoto.html">Фото мотоциклів</a></li>
+        <li><a href="motovideo1.html">Кастом едіти</a></li>
+        <li><a href="#details">Деталі</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 1. Головна секція на весь екран (Hero) -->
+  <header class="hero" id="hero">
+    <div class="hero-badge">🏍️ FULL THROTTLE ⚡</div>
+    <h1>Вітаємо у зоні швидкості, друже! <span class="finish-flag">🏁</span></h1>
+    <p>
+      Сайт присвячений драйву, реву двигунів та справжній атмосфері двох коліс.<br>
+      Свобода починається там, де закінчується асфальт і відкривається повний газ.
+    </p>
+    <a href="#about" class="btn">Завести двигун 🔑</a>
+  </header>
+
+  <!-- 2. Про Максима Ковалюка (17 років) -->
+  <section class="content-section" id="about">
+    <h2 class="section-title">⚡ Про головного райдера</h2>
+    <div class="info-card hero-about-card">
+      <p class="about-lead">
+        Тут зібрана історія про 17-річного райдера <span class="highlight-name">Максима Ковалюка</span>, для якого мотоцикли — це не просто транспорт, а стиль життя. Його неповторна енергетика та адренамін у крові задають темп будь-якій дорозі.
+      </p>
+      
+      <div class="quote-box">
+        <p class="quote-text">
+          «У свої 17 років Максим уже точно знає, чого варта швидкість. <br>
+          Кожен виїзд на дорогу — це виклик звичним рамкам, жага до свободи та повний контроль над дорогою під рев мотора.»
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Секція: Вайб гаража, мотокультура та стікери -->
+<section class="content-section" id="garage">
+    <h2 class="section-title">🛠️ Гараж & Вайб Траси 🛣️</h2>
+    <div class="cards-grid">
+      
+      <div class="info-card">
+        <h3>🏍️ Швидкість і Свобода</h3>
+        <p>Коли двигун набирає оберти, а вітер вдаряє в груди — усі проблеми залишаються позаду. Лише ти, мотоцикл і нескінченна дорога вперед.</p>
+        <span class="moto-sticker">#BornToRide 🏁</span>
+      </div>
+
+      <div class="info-card">
+        <h3>🛠️ Запах бензину та мастила</h3>
+        <p>Гараж — це місце, де готується техніка до нових звершень. Вечори за підготовкою байка та роботою над деталями формують справжній характер.</p>
+        <span class="moto-sticker">#GarageLife 🔧</span>
+      </div>
+
+      <div class="info-card">
+        <h3>🌙 Нічні проїзди по місту</h3>
+        <p>Порожні нічні вулиці та чіткий звук вихлопної системи. Особлива атмосфера, яку Максим знає і цінує на всі сто відсотків.</p>
+        <span class="moto-sticker">#NightRider ⚡</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Детальна інформація / Навігація -->
+  <section class="content-section" id="details">
+    <h2 class="section-title">🔥 Мото-колекція та Навігація</h2>
+    <div class="info-card nav-details-card">
+      <p class="nav-details-text">Усі найкрутіші кадри, проїзди та фотосети чекають на тебе в розділах:</p>
+      
+      <div class="nav-buttons-container">
+        <a href="motovideo.html" class="nav-btn-link">🎥 Відео проїзди</a>
+        <a href="motohb.html" class="nav-btn-link main-btn">📸 Фото галерея</a>
+        <a href="motovideo1.html" class="nav-btn-link">🎬 Кастом едіти</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2026 Moto Hub. Створено спеціально для Максима 🏍️</p>
+  </footer>
+
+  <script src="moto.js"></script>
+</body>
+</html>
